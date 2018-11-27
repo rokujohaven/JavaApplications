@@ -1,5 +1,4 @@
-# oopPractice
-object oriented programming exercises
+# roleCall exercise
 
 Student Class Assignment
 
