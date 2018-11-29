@@ -1,4 +1,5 @@
 package Attributes;
+import java.util.Scanner;
 
 public class Student {
 	
@@ -19,10 +20,16 @@ public class Student {
 	
 	
 	//constructor 
-	public Student (String Name, int[] Grades, double GPA) {
+	public Student (String Name, int[] Grades) {
 		this.Name = Name; 
 		this.Grades = Grades; 
-		this.GPA = GPA; 
+	}
+	
+	//default constructor 
+	public Student() {
+		this.Name = "Anonymous";
+		this.Grades = new int[] {}; 
+		this.GPA = 0; 
 	}
 	//getters and setters
 	public String getName() {
@@ -34,14 +41,21 @@ public class Student {
 	public int[] getGrades() {
 		return this.Grades;
 	}
+	
 	public void setGrades(int[] grades) {
 		this.Grades = grades;
+		this.GPA = calculateGPA(this.Grades);
 	}
 	public double getGPA() {
 		return this.GPA;
 	}
-	public void setGPA(double gPA) {
-		this.GPA = gPA;
+	//calculates the gpa on a 4.0 scale, if grades are between 0 and 100
+	private double calculateGPA(int[] grades) {
+		double gPA = 0; 
+		for (int i = 0; i < grades.length; ++i) {
+			gPA += grades[i]; 
+		}
+		return (gPA/grades.length)/25; 
 	} 
 	
 	//prints the object's attributes 
@@ -49,7 +63,7 @@ public class Student {
 		
 		System.out.println("Name: " + this.Name);
 		System.out.print("Grades: ");
-		for (int i = 0; i < 3; ++i) {
+		for (int i = 0; i < this.Grades.length; ++i) {
 			System.out.print(this.Grades[i] + " ");
 		}
 		System.out.println();
@@ -57,45 +71,12 @@ public class Student {
 		System.out.println();
 	}
 	
-//	4. Add Methods
-//
-//	Modify the Student class and add a method 
-//	whose signature is: public void getInfo(). 
-//
-//	This method will print information about 
-//	a student’s school life. The method should 
-//	print out a line that looks something like 
-//	this: My name is Mike. I'm in grade 15 and I have a 4.0 GPA.
-//
-//	Then, in your main method, ask the user to 
-//	input the number of students they would 
-//	like to enter and store this in an integer 
-//	named numStudents.
-//
-//	Create an array of type Student with 
-//	[numStudents] positions and 
-//	read their information through a loop. 
-//	Using another loop, have each student talk 
-//	about their school life.
-	
 	public void getInfo() {
 		System.out.println("My name is " + this.getName() + "\n"
 				+ "I'm in grade 15 and I have a " + this.getGPA() + " GPA.");
 		
 	}
-	
-	//part 5 continued: 
-//	Modify the Student class as follows:
-//
-//		- Add a variable of type Course.
-//		- Then, add the following methods:
-//
-//		public void addCourse(Course c). This sets the student's current course to a given.
-//
-//		public void getCourse(). This makes student talk about their current course
-//
-//		- The getCourse() method should look like this:
-//		“I’m currently talking CS135 - Intro to Object Oriented Programming with Professor Joseph”
+
 
 	public void addCourse(Course c) {
 		this.course = c; 
@@ -106,5 +87,22 @@ public class Student {
 		this.course.getCode() + " - " + this.course.getSubject()
 		+ " with Professor " + this.course.getInstructor());
 	}
+	
+//	6. Finally
+//
+//	Change the Grades[]  variable in your Student class to hold  an array of Integer instead of an array of int , and change the  GPA variable to hold a Double object instead of a double primitive. Make any necessary changes to your getters setters, contractors and methods in your main class so they work with the new data types of you class variable.
+//	Please write a method that takes a string and initializes a Student object using the information found within the string. The information in the string will be as follows: 
+//	StudentName, [grade1, grade2, grade3], [courseCode, subject, InstructorName]
+//	For example :
+//	String s="Pedro Peres, [100,95,80], [Cis-101, Java, James]";
+//	String s = "Steve Smit, [90, 70,55, 40,80], [Cis-203, Java Developer, Marcial]";
+	
+//	Step 7:
+//	In your main method create an array of strings  filled with 10 strings of data in the same format as the ones we used in step 6 ("Pedro Peres, [100,95,80], [Cis-101, Java, James]") and create 10 instances of Student using the data from that array (by making use of the method you created in step 6)
+//
+//	Create a method that takes an array of Student object as arguments and print the name and GPA of each student with GPA above the average
+//	Create a method that takes an int n and array of Student object as arguments and print the name and GPA of the n higest GPAs of within the array of Students
+//	Create a method that takes an int n and array of Student object as arguments and prints the n Courses with the highest average GPAs based on the students that are taking that class
+
 
 }

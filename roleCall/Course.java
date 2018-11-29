@@ -17,6 +17,12 @@ public class Course {
 		this.subject = s; 
 		this.instructor = i;
 	}
+	//default constructor 
+	public Course() {
+		this.code = "NA"; 
+		this.subject = "NA"; 
+		this.instructor = "NA"; 
+	}
 	
 	//getters and setters 
 	
